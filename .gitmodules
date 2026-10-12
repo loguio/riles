@@ -1,0 +1,9 @@
+[submodule "front-riles"]
+	path = front-riles
+	url = https://github.com/loguio/front-riles.git
+[submodule "landing-riles"]
+	path = landing-riles
+	url = https://github.com/loguio/web-riles.git
+[submodule "back-riles"]
+	path = back-riles
+	url = https://github.com/loguio/back-riles.git
