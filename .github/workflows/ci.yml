@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  docs-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: markdownlint
+        run: npx --yes markdownlint-cli2
+
+  submodules:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: verify submodule pins are resolvable and checked out
+        run: |
+          set -euo pipefail
+          status="$(git submodule status --recursive)"
+          echo "$status"
+          # leading '-' = not initialised, leading '+' = checked out commit differs from pin
+          if echo "$status" | grep -qE '^[-+]'; then
+            echo "submodule pin mismatch" >&2
+            exit 1
+          fi

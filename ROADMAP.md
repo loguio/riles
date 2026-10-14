@@ -17,6 +17,7 @@
 ## ✅ Phase 1 : Moteur LLM, IA de Reformulation & Garde-fous *(Terminé)*
 
 > **Décisions d'architecture validées & implémentées :**
+>
 > - **Passerelle Multi-Provider (100 % compatible OmniRoute / OpenRouter / Gemini 3.5–3.8 Flash Free / Groq)** : Client standard OpenAI-compatible dans NestJS ([`LlmService`](./back-riles/src/modules/llm/llm.service.ts)) configurable via `LLM_BASE_URL`, `LLM_API_KEY`, `LLM_LIGHT_MODEL` (`gemini-3.5-flash-lite`) et `LLM_PRO_MODEL` (`gemini-3.8-flash`). Peut pointer sur **OmniRoute (`http://localhost:20128/v1`)** ou sur les tiers gratuits cloud.
 > - **Mode d'exécution :** **Hybride intelligent** (appel LLM réel si configuré, sinon fallback transparent sur le moteur déterministe/règles amélioré).
 > - **Centralisation dans le Chat Coach (`/chat`) — Pas d'interface séparée ni de bouton de validation manuel :**
@@ -29,6 +30,7 @@
 >   - Aucun blocage arbitraire : un objectif ambitieux (ex. *Ultra 180 km en 2 mois*) est **100 % accepté** si l'athlète est déjà en milieu de prépa / possède le volume adéquat (ou si ses données ne sont pas encore synchronisées). L'alerte pédagogique ne se déclenche que si l'historique réel prouve un écart dangereux.
 
 ### 1.1. Architecture & Passerelle LLM (`LlmModule` / `CoachModule`)
+
 - [x] Créer [`LlmModule`](./back-riles/src/modules/llm/llm.module.ts) & [`LlmService`](./back-riles/src/modules/llm/llm.service.ts) compatible **OmniRoute (`http://localhost:20128/v1`)**, **Gemini 3.5 / 3.8 Flash Free Tier**, OpenRouter et Groq (Variables `.env` : `LLM_BASE_URL`, `LLM_API_KEY`, `LLM_LIGHT_MODEL`, `LLM_PRO_MODEL` + fallback local automatique).
 - [x] Mettre en place le **routage bi-modèle à coût quasi-nul (0 € en Free Tier / OmniRoute)** :
   - `LLM_LIGHT_MODEL` (`gemini-3.5-flash-lite`) : pour le chat courant, l'extraction de règles de vie, la reformulation automatique et le débrief RPE.
@@ -37,10 +39,12 @@
 - [x] Forcer les **Structured Outputs (JSON strict)** avec nettoyage robuste pour supporter tous les modèles.
 
 ### 1.2. IA de Reformulation Automatique & Règles de Vie dans le Chat (`cahier des charges suite.md` - Point 5)
+
 - [x] **Reformulation automatique à l'envoi (Onboarding Étape 2)** : Dès que l'utilisateur valide l'étape 2 dans [`onboarding.tsx`](./front-riles/app/onboarding.tsx), l'IA reformule son objectif et extrait ses `LifeRule`s en arrière-plan sans bouton manuel superflu.
 - [x] **Reformulation & enregistrement automatiques des `LifeRule`s dans le Chat (`/chat`)** : Lorsqu'un utilisateur écrit une contrainte au coach (ex. *« Je ne peux pas courir le jeudi »*), [`CoachService`](./back-riles/src/modules/coach/coach.service.ts) et [`AppContext`](./front-riles/src/context/AppContext.tsx) la reformulent et l'ajoutent automatiquement au profil.
 
 ### 1.3. Garde-fous Médicaux & Éligibilité Contextuelle (`CDC Sect. 8` & `Suite Sect. 2`)
+
 - [x] **Détection d'urgence médicale (`checkMedicalRedFlags`)** : Détection instantanée des symptômes critiques (*douleur thoracique, vertiges, malaise, claquage, douleur aiguë*) $\rightarrow$ arrêt immédiat de la séance et recommandation médicale.
 - [x] **Matrice d'éligibilité contextuelle (`evaluateGoalEligibility`)** : Vérifie le contexte réel d'entraînement (`recentWeeklyKm`, `longestRecentRunKm`, `hasSyncedHistory`) avant tout refus pédagogique ; accepte pleinement les objectifs ambitieux si le coureur est déjà préparé.
 - [x] **Interdiction d'hallucination physiologique** : Le LLM choisit uniquement parmi des actions d'adaptation validées (`lighten`, `easy_run`, `postpone`, `injury_care`, `add_life_rule`).
