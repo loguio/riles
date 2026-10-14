@@ -9,6 +9,7 @@ Ce document centralise la stratégie de mise sur le marché (Go-To-Market) avant
 Puisque tu m'as demandé de challenger systématiquement tes idées, voici **le premier point critique à trancher avant d'acheter un nom de domaine ou de lancer des pubs** :
 
 ### ⚠️ Le problème avec le nom « Riles » en public (SEO & Marque)
+
 1. **Collision frontale sur Google & TikTok avec l'artiste Rilès** :
    - En France, **Rilès** est un artiste majeur qui a justement réalisé un coup médiatique mondial en courant **24 heures non-stop sur un tapis de course** (*Survival Run*).
    - Si un coureur entend parler de ton app et tape *« Riles »* ou *« Riles course à pied »* sur Google, YouTube ou TikTok, **100 % de la première page** est occupée par le rappeur Rilès. Tu perdras une part énorme du trafic organique de bouche-à-oreille.
@@ -20,14 +21,18 @@ Puisque tu m'as demandé de challenger systématiquement tes idées, voici **le 
 ### 🌐 Quelles options de Nom de Domaine choisir ?
 
 #### Option A — Si « Riles » n'était qu'un nom de code et que tu gardes le logo « P » de tes maquettes *(Recommandé)*
+
 Choisir un nom court commençant par **P**, mémorisable, international et aligné avec l'idée d'adaptation / allure (*Pace / Pivot / Pulse*) :
+
 - **`paceflow.run`** ou **`paceflow.app`** *(L'allure fluide qui s'adapte à ta vie)*
 - **`pivot.run`** ou **`getpivot.app`** *(Le plan qui pivote quand tu as un imprévu)*
 - **`pacio.run`** ou **`pacio.app`** *(Court, sonne humain comme un coach, libre en SEO)*
 - **`plania.run`** *(Contraction immédiate de Plan + IA)*
 
 #### Option B — Si tu tiens absolument à garder le nom « Riles »
+
 Il faut impérativement accoler un **mot-clé métier** dans le domaine pour aider Google et éviter toute ambiguïté :
+
 - **`riles.run`** *(L'extension `.run` est la plus crédible dans l'écosystème Strava/Running — ~15 €/an sur Namecheap/Cloudflare/OVH)*
 - **`rilescoach.com`** ou **`rilescoach.fr`**
 - **`try-riles.com`** *(Idéal et pas cher — ~9 €/an — pour la phase de test pré-lancement)*
@@ -41,6 +46,7 @@ Il faut impérativement accoler un **mot-clé métier** dans le domaine pour aid
 Le dossier [`landing-riles/`](./landing-riles) est **100 % statique et autonome** (zéro dépendance à `back-riles`).
 
 ### Étape 2.1 — Déployer sur Netlify (2 minutes)
+
 1. Va sur [app.netlify.com](https://app.netlify.com).
 2. Glisse-dépose directement le dossier **`landing-riles`** dans la zone *Deploy manually* (ou connecte ton dépôt Git en indiquant `landing-riles` comme *Base directory* et `.` comme *Publish directory*).
 3. **Netlify Forms s'active tout seul !**
@@ -50,12 +56,14 @@ Le dossier [`landing-riles/`](./landing-riles) est **100 % statique et autonome*
    - Dans *Site configuration > Notifications > Form submission notifications*, ajoute ton adresse email pour recevoir une alerte dès qu'un coureur s'inscrit.
 
 ### Étape 2.2 — Activer Microsoft Clarity (Heatmaps & Replay Vidéo — 3 minutes)
+
 1. Crée un compte gratuit sur [clarity.microsoft.com](https://clarity.microsoft.com) et crée un projet.
 2. Copie ton `Project ID` (une chaîne courte comme `lz9x8abcd`).
 3. Colle-le dans [`landing-riles/js/config.js`](./landing-riles/js/config.js) à la ligne `CLARITY_PROJECT_ID: "ton_id"`.
 4. **Ce que tu verras :** La carte thermique de ta page et les **vidéos en replay** de chaque visiteur qui teste le simulateur !
 
 ### Étape 2.3 — Activer PostHog ou Google Analytics 4 (Entonnoir de clics — 4 minutes)
+
 1. Crée un compte gratuit sur [eu.posthog.com](https://eu.posthog.com) (hébergé en Europe, RGPD friendly).
 2. Colle ta clé `phc_...` dans [`landing-riles/js/config.js`](./landing-riles/js/config.js) (`POSTHOG_API_KEY`).
 3. Tous les événements de l'entonnoir remontent déjà automatiquement :
@@ -85,6 +93,7 @@ La page [`landing-riles/index.html`](./landing-riles/index.html) change automati
 ## 📣 4. Kit Prêt-à-Poster (Pour générer tes 500 premiers visiteurs)
 
 ### A. Post Reddit (`r/runningfr`) / Groupes Facebook Running (0 €)
+
 **Titre :**
 > J'en avais marre des plans rigides (Campus, Runna, PDF) qui te culpabilisent dès que tu sors tard du boulot, alors j'ai codé un simulateur qui rééquilibre la semaine en direct. Vos avis ?
 
@@ -102,6 +111,7 @@ La page [`landing-riles/index.html`](./landing-riles/index.html) change automati
 ---
 
 ### B. Script Vidéo TikTok / Instagram Reels (18 secondes — 0 €)
+
 - **0 à 3 sec (Hook visuel + texte choc à l'écran)** :
   - *Image* : Montrer un calendrier de course avec une grosse séance *« Mercredi : 1h15 Seuil (14 km) »* alors qu'il fait nuit dehors.
   - *Texte/Voix* : « POV : Il est 19h45, tu sors à peine du boulot, et ton plan prévoit 14 km au seuil sous la pluie. »
@@ -116,7 +126,9 @@ La page [`landing-riles/index.html`](./landing-riles/index.html) change automati
 ---
 
 ### C. Accroches Stickers QR Codes Terrain (Pistes d'athlé, Parcs, Kinés)
+
 Génère 3 QR codes gratuits pointant vers :
+
 - **Pistes & Parcs** (`?angle=guilt&utm_source=qr_parc`) :
   > **« Séance sautée cette semaine ? »**
   > *Ne la rattrape surtout pas demain matin. Scanne pour voir comment l'IA rééquilibre ta semaine en 15 secondes (Sans inscription).*

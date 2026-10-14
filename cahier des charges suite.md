@@ -46,4 +46,4 @@ Pour contourner le frein au téléchargement d'une application mobile et facilit
 
 ## **5\. IA de reformulation**
 
-faire une reformulation par une ia de la demande de l’utilisateur 
+faire une reformulation par une ia de la demande de l’utilisateur

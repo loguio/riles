@@ -1,0 +1,13 @@
+{
+  // Docs-first config: disable style rules that would force a mass rewrite of
+  // existing specs (P9 rewrites docs anyway); keep structural rules.
+  "config": {
+    "MD013": false, // line length
+    "MD024": false, // duplicate headings across spec sections
+    "MD036": false, // emphasis used as heading in specs
+    "MD041": false, // first line heading
+    "MD060": false  // table column style
+  },
+  "globs": ["*.md"], // root-level spec docs; submodules lint in their own CI
+  "ignore": ["node_modules", "back-riles", "front-riles", "landing-riles", "maquettes"]
+}

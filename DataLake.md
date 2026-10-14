@@ -47,4 +47,3 @@ Extrait de code
 
 | {  "timestamp": "2026-09-16T08:30:00.000Z",  "user\_id\_hash": "a1b2c3d4e5f6",  "interaction": {    "type": "agenda\_negotiation",    "user\_prompt": "Je devais faire 1h20 en endurance mais je n'ai que 35 minutes avant le dîner.",    "ai\_response": "Pas de souci \! On raccourcit la sortie à 35 min en endurance fondamentale sans chercher à forcer, et on décale la sortie longue du dimanche de 10% pour compenser."  },  "athlete\_context": {    "target\_goal": "Semi-marathon en 1h30",    "weeks\_before\_race": 4,    "recent\_metrics": {      "atl\_fatigue": 65.4,@      "ctl\_fitness": 58.2,      "tsb\_form": \-7.2,      "sleep\_score\_last\_night": 74,      "hrv\_status": "balanced"    }  },  "post\_run\_feedback": {    "rpe": 4,    "perceived\_legs": "fresh",    "text\_comment": "Couru sur tapis, nickel."  }} |
 | :---- |
-
