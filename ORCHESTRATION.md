@@ -35,8 +35,11 @@ scratchpad, `ROADMAP.md` stays the product spec of record.
 | --- | --- | --- |
 | `front-riles` | [#24](https://github.com/loguio/front-riles/pull/24) | merged (`5ad0e84`) |
 | `front-riles` | [#25](https://github.com/loguio/front-riles/pull/25) | merged (`a84aab5`) — reviewer nits |
-| `back-riles` | — | merged to `master` (`97fa486`) |
-| `landing-riles` | — | merged to `master` (`62b5cb7`) |
+| `front-riles` | [#26](https://github.com/loguio/front-riles/pull/26) | merged (`52f2e1e`) — prettier / green CI |
+| `back-riles` | [#52](https://github.com/loguio/back-riles/pull/52) | merged (`614d923`) — lint + CI migrate skip |
+| `riles` | [#12](https://github.com/loguio/riles/pull/12) | merged (`0899080`) — green docs-lint |
+| `back-riles` | — | Phase 5B merged (`97fa486`) |
+| `landing-riles` | — | Phase 5B merged (`62b5cb7`) |
 
 ## Branches
 
@@ -100,6 +103,22 @@ per-task tables (B1-B8, F0-F7, L1-L4, X1). Summary:
 3. Billing provider: **RevenueCat**, built as a stubbed `BillingProvider` seam.
 4. `PlanType`: `BASIC` + 14-day `PRO` trial mechanism built; beta left on `PRO`
    (enforcement is a flag, default off).
+
+## Hardening (post-merge)
+
+After the merges, CI was audited across all four repos and three pipelines were
+found red — all pre-existing, none caused by Phase 5B:
+
+| Repo | Problem | Fix (PR) |
+| --- | --- | --- |
+| `riles` | `docs-lint` failing: 20 markdownlint errors in `SCALE_READINESS.md` | [#12](https://github.com/loguio/riles/pull/12) — blank lines + disable `MD029` |
+| `back-riles` | `lint` failing on 3 unused-var errors; `migrate deploy` failing on unset secrets | [#52](https://github.com/loguio/back-riles/pull/52) |
+| `front-riles` | `format:check` failing on 6 Phase 5B files | [#26](https://github.com/loguio/front-riles/pull/26) |
+| `landing-riles` | already green | — |
+
+All four pipelines are now green. Known residual: one non-reproducing test flake
+seen once in `back-riles` `npm test` (3 clean re-runs afterwards) — not
+identified, left as a watch item.
 
 ## Handoff — how to finish
 
