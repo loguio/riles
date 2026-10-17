@@ -5,8 +5,7 @@ viral story sharing, subscription soft-paywall). Source of truth for scope is
 [`ROADMAP.md`](./ROADMAP.md) (Phase 5B, lines 116-128); this file is the working
 scratchpad, `ROADMAP.md` stays the product spec of record.
 
-**Status: COMPLETE** — 4 iterations, 3 apps. back + landing merged to `master`;
-front open as a PR for review.
+**Status: COMPLETE & MERGED** — 4 iterations, 3 apps, all merged to `master`.
 
 ## Operating model
 
@@ -34,9 +33,10 @@ front open as a PR for review.
 
 | App | PR | State |
 | --- | --- | --- |
-| `front-riles` | [#24](https://github.com/loguio/front-riles/pull/24) | open — reviewed; blockers resolved; ready to merge |
-| `back-riles` | merged to `master` (`97fa486`) | merged |
-| `landing-riles` | merged to `master` (`62b5cb7`) | merged |
+| `front-riles` | [#24](https://github.com/loguio/front-riles/pull/24) | merged (`5ad0e84`) |
+| `front-riles` | [#25](https://github.com/loguio/front-riles/pull/25) | merged (`a84aab5`) — reviewer nits |
+| `back-riles` | — | merged to `master` (`97fa486`) |
+| `landing-riles` | — | merged to `master` (`62b5cb7`) |
 
 ## Branches
 
@@ -103,9 +103,8 @@ per-task tables (B1-B8, F0-F7, L1-L4, X1). Summary:
 
 ## Handoff — how to finish
 
-1. **Review + merge the PR.** `front-riles` #24 carries the reviewer's comments;
-   merge when satisfied. `back-riles` and `landing-riles` are already on
-   `master`.
+1. **All merged.** `front-riles` #24 and #25, plus `back-riles` and
+   `landing-riles` are on `master`.
 2. **Bump the parent submodule pointers** in `riles` to the merged commits.
 3. **Enable the paywall** (when ready): set `BILLING_WEBHOOK_SECRET`,
    `PAYWALL_ENFORCED=true`, flip the Prisma `planType` default to `BASIC`,
