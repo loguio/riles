@@ -10,7 +10,8 @@ today (evidence-based), the ordered backlog, and the 24/7 operating loop.
 
 ## 1. Definition of "ready for 10k"
 
-Target scenario (worst realistic day):  
+Target scenario (worst realistic day):
+
 - 10 000 landing visitors/day, 25 % mobile-first, peak 1500/hour (~0,5 rps
   average, 3–4 rps peak, burst 20 rps from social).
 - 3 000 waitlist signups over the campaign (300/day peak).
@@ -38,6 +39,7 @@ Exit criteria (all must be green):
 ## 2. Current gaps (audited in this repo)
 
 **Landing (`web-riles`)**
+
 - Static Netlify site: fine for 10k *pageviews* (CDN, immutable assets).
 - **Gap C7:** waitlist uses Netlify Forms (free tier ≈ 100 submissions/month,
   paid ≈ 1000/month). 3 000+ signups will hit the ceiling → must capture to the
@@ -49,6 +51,7 @@ Exit criteria (all must be green):
   stays inside free tiers at 3k DAU (PostHog 1M events/mo).
 
 **API (`back-riles`)**
+
 - NestJS + Prisma + Supabase Postgres, LLM gateway (Gemini/OpenAI-compatible
   via OmniRoute), datalake exports, Strava/Garmin/Apple webhooks.
 - **Gap C6/C3:** no LLM concurrency limit, no per-user daily cap, no circuit
@@ -66,6 +69,7 @@ Exit criteria (all must be green):
   add lint/type-check/build/test + load smoke.
 
 **App (`front-riles`)**
+
 - Expo/React Native; needs EAS build profiles, OTA update channel, Sentry/
   crash reporting, API base URL config per environment, offline cache of the
   current plan, and exponential backoff on sync.
@@ -76,6 +80,7 @@ Exit criteria (all must be green):
 ## 3. Ordered backlog
 
 ### P0 — before any real traffic (this week)
+
 1. `CD-01` Add `/health` (DB ping) and `/ready` public endpoints. ✅ started
 2. `CD-02` Global rate limit (per-IP + per-user) with 429 + `Retry-After`.
 3. `CD-03` Request-ID middleware + structured access logs (latency, status).
@@ -95,6 +100,7 @@ Exit criteria (all must be green):
     load-smoke (short).
 
 ### P1 — before beta scale (next)
+
 11. `CD-11` Redis (Upstash) for rate limit + LLM cache + idempotency keys.
 12. `CD-12` Sentry (app + API) + uptime checks + alert routing.
 13. `CD-13` EAS profiles, OTA channel, crash reporting, perf marks in app.
@@ -104,6 +110,7 @@ Exit criteria (all must be green):
 16. `CD-16` Backpressure policy for webhooks (queue + idempotent dedupe).
 
 ### P2 — before public launch
+
 17. `CD-17` Multi-region/static asset CDN + origin failover.
 18. `CD-18` Cost dashboards & budget alarms (LLM, bandwidth, DB, egress).
 19. `CD-19` Chaos drills: kill 1 pod, pg failover, LLM outage → degraded mode.
