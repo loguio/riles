@@ -6,6 +6,7 @@
     "MD024": false, // duplicate headings across spec sections
     "MD036": false, // emphasis used as heading in specs
     "MD041": false, // first line heading
+    "MD029": false, // ordered-list numbering: the backlog numbers continuously (11..20)
     "MD060": false  // table column style
   },
   "globs": ["*.md"], // root-level spec docs; submodules lint in their own CI
