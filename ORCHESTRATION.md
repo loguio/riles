@@ -25,7 +25,8 @@ scratchpad, `ROADMAP.md` stays the product spec of record.
   (comments on the PR)** → Rework if needed → Gate.
 - **Isolation**: each team works on its own branch inside its own submodule, and
   never pushes to `master` directly — work lands as a **pull request** so the
-  reviewer has a place to comment. The user approves merges.
+  reviewer has a place to comment. The user approves merges. **Branches are
+  deleted on merge** (local + remote).
 - **Definition of Done**: `lint` + `type-check` + tests + build pass in that
   repo, and the independent Verifier signs off. Self-report never counts.
 
@@ -119,6 +120,20 @@ found red — all pre-existing, none caused by Phase 5B:
 All four pipelines are now green. Known residual: one non-reproducing test flake
 seen once in `back-riles` `npm test` (3 clean re-runs afterwards) — not
 identified, left as a watch item.
+
+## Repo cleanup
+
+Stale branches pruned after the merges. Going forward, **the branch is deleted on
+merge** (local + remote).
+
+- Deleted every orchestration branch: `feat/phase5b-back`, `feat/phase5b-front`,
+  `merge/phase5b-front`, `feat/phase5b-landing`, `fix/phase5b-review-nits`,
+  `fix/prettier-format`, `fix/lint-green`, `fix/docs-lint`.
+- Deleted stale branches whose PRs were already merged: 8 in `back-riles`,
+  4 in `front-riles`, 30 in `landing-riles`, 2 in `riles`.
+- Kept only branches with **open** PRs: `back-riles` `feat/scale-p0-10k` and
+  `feat/scale-p1-back`; `riles` `submodule/landing-smoke`.
+- Final: `front-riles` and `landing-riles` are down to their default branch only.
 
 ## Handoff — how to finish
 
